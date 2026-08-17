@@ -22,7 +22,7 @@ if(!isset($_SESSION)) {
 
 <input type="text" name="login" placeholder="Login" required>
 <input type="password" name="senha" placeholder="Senha" required>
-
+<!-- Cadastro -->
 <button class="botao" type="submit" name="B4">Cadastrar</button>
 </form>
 </div>
