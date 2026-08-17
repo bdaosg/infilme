@@ -5,10 +5,18 @@ extract($_POST);
 
 # Salvar
 if(isset($B1)){
+    # Dados do usuário
     $consulta = "INSERT INTO usuarios (Id, nome, cpf, cep) VALUES (NULL, '$nome', '$cpf', '$cep')";
     banco($server, $user, $password, $db, $consulta);
-    header("Location: cadastro2.php");
+
+    # Dados do login
+    $login_senha = md5($login_senha);
+    $consulta = "INSERT INTO login_usuario (Id, conta, senha) VALUES (NULL, '$login_user', '$login_senha')";
+    banco($server, $user, $password, $db, $consulta);
+
+    header("Location: login.php");
     exit();
+
 }
 
 # Exibir

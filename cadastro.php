@@ -38,14 +38,24 @@ if(!isset($_SESSION)) {
 
             <div class="campo">
                 <p>CPF</p>
-                <input type="text" name="cpf" maxlength="11" placeholder="000.000.000-00" required>
+                <input type="number" name="cpf" maxlength="11" placeholder="000.000.000-00" required>
             </div>
 
             <div class="campo">
                 <p>CEP</p>
-                <input type="text" name="cep" placeholder="00000-000" required>
+                <input type="number" name="cep" maxlength="8" placeholder="00000-000" required>
             </div>
 
+            <div class="campo">
+                <p>User</p>
+                <input type="text" name="login_user" placeholder="User" required>
+            </div>
+            
+            <div class="campo">
+                <p>Senha</p>
+                <input type="password" name="login_senha" placeholder="Senha" required>
+            </div>
+            
             <button class="botao" type="submit" name="B1">Cadastrar</button>
 
         </form>
