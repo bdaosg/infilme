@@ -1,0 +1,303 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #101010;
+}
+
+header {
+    background-image: url("../img/banner.png");
+    background-size: cover;
+    height: 200px;
+    width: 100%;
+}
+
+nav {
+    background-color: #171717;
+    padding: 15px;
+    display: flex;
+}
+
+h1 {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.empurra {
+    margin-left: auto;
+}
+
+.botao {
+    color: #fff;
+    text-decoration: none;
+    padding: 7px 15px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #555;
+}
+
+.imagem {
+    width: 100%;
+    height: 363px;
+    border-radius: 10px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #171717;
+    border-radius: 10px;
+    padding: 15px;
+
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.botao {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao:hover {
+    background-color: #b20710;
+}
+
+.card form {
+    margin-top: auto;
+    text-align: center;
+}
+
+.titulo {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.preco {
+    color: #e50914;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0;
+    padding-bottom: 0px;
+}
+
+.descricao {
+    text-align: justify;
+    font-size: 0.9rem;
+    color: #ccc;
+    padding-bottom: 20px;
+}
+
+/* PÁGINA DE LOGIN */
+
+.form-box {
+    background-color: #171717;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.form-box h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.form-box input {
+    padding-right: 0px;
+    width: 100%;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.botao-cadastro {
+    display: block;
+    margin-top: 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.botao-cadastro:hover {
+    color: white;
+}
+
+.form-box .botao {
+    width: 100%;
+    margin-top: 20px;
+}
+
+input {
+    background-color: #333;
+    color: white;
+}
+
+/* PÁGINA DE CADASTRO */
+
+.campo {
+    padding-right: 17px;
+    margin-bottom: 15px;
+}
+
+.campo p {
+    color: #ccc;
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* PÁGINA DE CONFIRMAÇÃO */
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-link {
+    cursor: pointer;
+    color: white;
+}
+
+.login-link:hover {
+    color: #e50914;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.form-container {
+    background-color: #171717;
+    padding: 25px;
+    border-radius: 10px;
+    width: 600px;
+}
+
+/* RESUMO */
+.resumo {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.resumo h3 {
+    color: #e50914;
+    margin-bottom: 10px;
+}
+
+.resumo-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* BOTÕES */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #b20710;
+}
+
+.link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: white;
+}
+
+/* RODÁPE */
+footer {
+    background-color: #171717;
+    color: #ccc;
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+}
