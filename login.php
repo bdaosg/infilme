@@ -40,11 +40,11 @@ if(!isset($_SESSION)) {
         }
         ?>
 
-        <form method="post" accept=""action="processa_login.php">
+        <form action = 'banco.php' method = 'post'>
             <input type="text" name="login" placeholder="Usuário">
             <input type="password" name="senha" placeholder="Senha">
 
-            <button class="botao" type="submit">Entrar</button>
+            <button class="botao" type="submit" name="B5">Entrar</button>
         </form>
 
         <a href="cadastro.php" class="botao-cadastro">Cadastrar-se</a>

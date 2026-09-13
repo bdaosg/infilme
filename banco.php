@@ -3,11 +3,21 @@ include "cons.php";
 require_once "DLL.php";
 extract($_POST);
 
-# Salvar
+if(!isset($_SESSION)){
+    session_start();
+}
+
+# Cadastrar
 if(isset($B1)){
     # Dados do usuário
     $consulta = "INSERT INTO usuarios (Id, nome, cpf, cep) VALUES (NULL, '$nome', '$cpf', '$cep')";
     banco($server, $user, $password, $db, $consulta);
+
+    # Pegar o id do usuário cadastrado
+    $consulta = "SELECT Id FROM usuarios WHERE cpf = '$cpf'";
+    $resultado = banco($server, $user, $password, $db, $consulta);
+    $linha = $resultado->fetch_assoc();
+    $id = $linha['Id'];
 
     # Dados do login
     $login_senha = md5($login_senha);
@@ -47,19 +57,25 @@ if(isset($B4)){
     echo "<select name = 'opcao'>";
     while($linha = $resultado->fetch_assoc()){
         echo"<option value=".$linha['Id'].">".$linha['Id']." ".$linha['Nome']."</option>";
-    }
-    echo "</select>";
+}
+echo "</select>";
 }
 
-# Teste
+# Login
 if(isset($B5)){
-    $consulta = "SELECT * FROM usuarios WHERE Nome = '$nome' and cpf = '$cpf'";
+    $senha = md5($senha);
+
+    $consulta = "SELECT * FROM login_usuario WHERE conta = '$login' and senha = '$senha'";
     $resultado = banco($server, $user, $password, $db, $consulta);
     If ($linha = $resultado->fetch_assoc()){
-        echo "acesso liberado";
-    }else{
-        echo "acesso negado";
-    }
+        $_SESSION["login"] = $linha['conta'];
+        header("Location: confirmar.php");
+        exit();
+    } else {
+        $_SESSION["erro"] = "Usuário ou senha incorreto";
+        header("Location: login.php");
+        exit();
+}
 }
 
 # Excluir

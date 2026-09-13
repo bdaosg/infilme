@@ -38,12 +38,12 @@ if(!isset($_SESSION)) {
 
             <div class="campo">
                 <p>CPF</p>
-                <input type="number" name="cpf" maxlength="11" placeholder="000.000.000-00" required>
+                <input type="tel" name="cpf" maxlength="11" placeholder="000.000.000-00" required>
             </div>
 
             <div class="campo">
                 <p>CEP</p>
-                <input type="number" name="cep" maxlength="8" placeholder="00000-000" required>
+                <input type="tel" name="cep" maxlength="8" placeholder="00000-000" required>
             </div>
 
             <div class="campo">
