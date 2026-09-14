@@ -25,7 +25,7 @@ if(!isset($_SESSION)) {
             <?php
             if (isset($_SESSION["login"])) {
                 echo "<li><span> " . $_SESSION["login"] . "</span></li>";
-                echo "<li><a href='sair.php' class='botao'>SAIR</a></li>";
+                echo "<li><a href='sair.php' class='botao1'>SAIR</a></li>";
             } else {
                 echo "<li><a href='login.php' class='botao'>LOGIN</a></li>";
             }
