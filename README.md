@@ -1,4 +1,10 @@
-# Infilme
+# INFILME
+**Arthur Teixeira e Bernardo Silva**
+
+  O projeto, INFILME, consiste em um sistema web para compra de filmes, onde o cliente realiza um cadastro e login no sistema, visualiza os filmes disponíveis no catálogo, adiciona os filmes no carrinho e finaliza a compra por meio de vários métodos de pagamento, como cartão, boleto e pix. 
+  Em resumo, o sistema possui o cadastro e login do usuário, os filmes disponíveis, o carrinho, onde o cliente pode adicionar ou remover filmes, e o pagamento que possibilita a compra.
+
+**SQL para criação do banco de dados:**
 
 CREATE DATABASE infilme;
 
