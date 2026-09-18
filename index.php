@@ -50,10 +50,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Agora com a ajuda do tenente Jim Gordon e do promotor público Harvey Dent, Batman tem tudo para banir o crime de Gotham City de uma vez por todas. Mas em breve, os três serão vítimas do Coringa, que pretende lançar Gotham em uma anarquia.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Batman: O Cavaleiro das Trevas">
                     <input type="hidden" name="preco" value="14.90">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -65,10 +65,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Marty McFly viaja para 1955 com a máquina do tempo do cientista Dr. Brown. Ele deve garantir que seus pais se apaixonem, para não arriscar sua própria existência.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="De Volta para o Futuro">
                     <input type="hidden" name="preco" value="12.50">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -80,25 +80,25 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Um astronauta tenta salvar a Terra enquanto está sozinho no espaço sideral.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Devoradores de Estrelas">
                     <input type="hidden" name="preco" value="9.90">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
             <!-- FILME 4 -->
             <div class="card">
-                <img class="imagem" src="img\filme1.webp">
+                <img class="imagem" src="img\HomemAranhaAtravesdoaranhaverso.jpg">
                 <b class="titulo">Homem-Aranha: Através do Aranhaverso</b>
                 <p class="preco">R$ 16,00</p>
 
                 <p class="descricao">Viajando pelo multiverso, Miles Morales conhece um novo time de Pessoas-Aranha, formado por heróis de diversas dimensões. Mas quando os heróis entram em conflito sobre como lidar com uma nova ameaça, Miles se vê em um impasse.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Homem-Aranha: Através do Aranhaverso">
                     <input type="hidden" name="preco" value="16.00">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form> 
             </div>
 
@@ -110,10 +110,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Uma equipe de exploradores viaja através de um buraco de minhoca no espaço, na tentativa de garantir a sobrevivência da humanidade.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Interestelar">
                     <input type="hidden" name="preco" value="15.50">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -125,10 +125,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Depois de despertar de um coma de quatro anos, uma antiga assassina busca vingança contra o grupo de assassinos que a traiu.</p>
                 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Kill Bill - Volume 1">
                     <input type="hidden" name="preco" value="11.90">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -139,10 +139,10 @@ if(!isset($_SESSION)) {
                 <p class="preco">R$ 13,00</p>
 
                 <p class="descricao">Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.</p>
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Matrix">
                     <input type="hidden" name="preco" value="13.00">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -153,10 +153,10 @@ if(!isset($_SESSION)) {
                 <p class="preco">R$ 10,50</p>
 
                 <p class="descricao">Sequência de O Diabo Veste Prada (2006).</p>
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="O Diabo Veste Prada 2">
                     <input type="hidden" name="preco" value="10.50">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -167,10 +167,10 @@ if(!isset($_SESSION)) {
                 <p class="preco">R$ 12,90</p>
 
                 <p class="descricao">Um assassino ciborgue do futuro tenta encontrar e matar Sarah Connor, uma garçonete que está destinada a ser a mãe de um homem que salvará a humanidade da extinção.</p>
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="O Exterminador do Futuro">
                     <input type="hidden" name="preco" value="12.90">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -182,10 +182,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">As vidas de dois assassinos da máfia, um boxeador, um gângster e sua esposa, e um par de bandidos se entrelaçam em quatro histórias de violência e redenção.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Pulp Fiction: Tempo de Violência">
                     <input type="hidden" name="preco" value="12.50">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -197,10 +197,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">Depois que a Aliança Rebelde é dominada pelo Império, Luke Skywalker começa seu treinamento Jedi com Yoda, enquanto seus amigos são perseguidos por toda a galáxia por Darth Vader e pelo caçador de recompensas Boba Fett.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Guerra nas Estrelas: O Império Contra-Ataca">
                     <input type="hidden" name="preco" value="15.00">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
@@ -212,10 +212,10 @@ if(!isset($_SESSION)) {
 
                 <p class="descricao">A corajosa coelha policial Judy Hopps e seu amigo, a raposa Nick Wilde, unem-se novamente para solucionar um novo caso, o mais perigoso e intrincado de suas carreiras.</p>
 
-                <form method="post" action="carrinho.php">
+                <form method="post" action="banco.php">
                     <input type="hidden" name="nome" value="Zootopia 2">
                     <input type="hidden" name="preco" value="13.50">
-                    <button class="botao" type="submit">ADICIONAR AO CARRINHO</button>
+                    <button class="botao" type="submit" name="B8">ADICIONAR AO CARRINHO</button>
                 </form>
             </div>
 
