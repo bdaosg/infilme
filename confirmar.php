@@ -32,7 +32,7 @@ if(!isset($_SESSION["login"])){header("Location: login.php");}
             <?php
             if (isset($_SESSION["login"])) {
                 echo "<li><span> " . $_SESSION["login"] . "</span></li>";
-                echo "<li><a href='sair.php' class='botao'>SAIR</a></li>";
+                echo "<li><a href='sair.php' class='botao2'>SAIR</a></li>";
             } else {
                 echo "<li><a href='login.php' class='botao'>LOGIN</a></li>";
             }
@@ -77,7 +77,7 @@ if(!isset($_SESSION["login"])){header("Location: login.php");}
             </div>
 
             <!-- FORMA PAGAMENTO -->
-            <form method="post" action="salvar_venda.php">
+            <form method="post" action="banco.php">
                 <div class="form-group">
                     <label>Forma de Pagamento:</label>
                     <select name="pagamento" required>
@@ -87,9 +87,7 @@ if(!isset($_SESSION["login"])){header("Location: login.php");}
                     </select>
                 </div>
 
-                <button type="submit" class="btn">Concluir Compra</button>
-
-                <a href="carrinho.php" class="link">Voltar ao carrinho</a>
+                <button type="submit" name="B7" class="btn">Concluir Compra</button>
 
             </form>
 
