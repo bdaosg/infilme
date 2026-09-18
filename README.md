@@ -5,10 +5,12 @@
 - Em resumo, o sistema possui o cadastro e login do usuário, os filmes disponíveis, o carrinho, onde o cliente pode adicionar ou remover filmes, e o pagamento que possibilita a compra.
 
 **Modelo Entidade Relacionamento:**
-![MER](MER.png)
+
+![MER](ModeloER.png)
 
 
 **Modelo Lógico:**
+
 ![MER](ML.png)
 
 **SQL para criação do banco de dados:**
