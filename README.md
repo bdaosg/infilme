@@ -7,6 +7,10 @@
 **Modelo Entidade Relacionamento:**
 ![MER](MER.png)
 
+
+**Modelo Lógico:**
+![MER](ML.png)
+
 **SQL para criação do banco de dados:**
 
 CREATE DATABASE infilme;
