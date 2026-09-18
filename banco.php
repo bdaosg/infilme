@@ -10,10 +10,11 @@ if(!isset($_SESSION)){
 # Cadastrar
 if(isset($B1)){
     # Dados do usuário
-    $consulta = "INSERT INTO usuarios (Id, nome, cpf, cep) VALUES (NULL, '$nome', '$cpf', '$cep')";
+    $consulta = "INSERT INTO usuarios (Id, nome, cpf, cep)
+                VALUES (NULL, '$nome', '$cpf', '$cep')";
     banco($server, $user, $password, $db, $consulta);
 
-    # Pegar o id do usuário cadastrado
+    # Pegar o Id criado
     $consulta = "SELECT Id FROM usuarios WHERE cpf = '$cpf'";
     $resultado = banco($server, $user, $password, $db, $consulta);
     $linha = $resultado->fetch_assoc();
@@ -21,44 +22,13 @@ if(isset($B1)){
 
     # Dados do login
     $login_senha = md5($login_senha);
-    $consulta = "INSERT INTO login_usuario (Id, conta, senha) VALUES (NULL, '$login_user', '$login_senha')";
+
+    $consulta = "INSERT INTO login_usuario (usuario_id, conta, senha) VALUES ('$id', '$login_user', '$login_senha')";
     banco($server, $user, $password, $db, $consulta);
 
     header("Location: login.php");
     exit();
 
-}
-
-# Exibir
-if(isset($B2)){
-    $consulta = "SELECT * FROM usuarios WHERE Nome = '$nome'";
-    $resultado = banco($server, $user, $password, $db, $consulta);
-    $linha = $resultado->fetch_assoc();
-    echo $linha['Id']."</br>";
-    echo $linha['Nome']."</br>";
-    echo $linha['insta']."</br>";  
-}
-
-# Listar tudo
-if(isset($B3)){
-    $consulta = "SELECT * FROM usuarios order by Nome";
-    $resultado = banco($server, $user, $password, $db, $consulta);
-    while($linha = $resultado->fetch_assoc()){
-        echo $linha['Id']."  ";
-        echo $linha['Nome']."  ";
-        echo $linha['insta']."</br>";
-    }
-}
-
-# Selecionar
-if(isset($B4)){
-    $consulta = "SELECT * FROM usuarios WHERE Nome = '$nome'";
-    $resultado = banco($server, $user, $password, $db, $consulta);
-    echo "<select name = 'opcao'>";
-    while($linha = $resultado->fetch_assoc()){
-        echo"<option value=".$linha['Id'].">".$linha['Id']." ".$linha['Nome']."</option>";
-}
-echo "</select>";
 }
 
 # Login
@@ -67,21 +37,65 @@ if(isset($B5)){
 
     $consulta = "SELECT * FROM login_usuario WHERE conta = '$login' and senha = '$senha'";
     $resultado = banco($server, $user, $password, $db, $consulta);
-    If ($linha = $resultado->fetch_assoc()){
+
+    if($linha = $resultado->fetch_assoc()){
         $_SESSION["login"] = $linha['conta'];
-        header("Location: confirmar.php");
+        $_SESSION["usuario_id"] = $linha['usuario_id'];
+
+        header("Location: index.php");
         exit();
     } else {
         $_SESSION["erro"] = "Usuário ou senha incorreto";
         header("Location: login.php");
         exit();
-}
+    }
 }
 
-# Excluir
-if(isset($B6)){
-    $consulta = "DELETE FROM usuarios WHERE Nome = '$nome' and cpf = '$cpf'";
-    banco($server, $user, $password, $db, $consulta);
+# Salvar venda
+if(isset($B7)){
+
+    $total = 0;
+    $compras = "";
+
+    if(empty($_SESSION["carrinho"])){
+        header("Location: carrinho.php");
+        exit();
+    }
+
+    foreach($_SESSION["carrinho"] as $filme){
+
+        $total += $filme["preco"];
+        $compras .= $filme["nome"].", ";
+    }
+
+    $compras = rtrim($compras,", ");
+
+    $consulta = "INSERT INTO vendas VALUES (NULL, '".$_SESSION["usuario_id"]."', '".$_SESSION["login"]."', '$compras', '$total', '$pagamento')";
+
+    banco($server,$user,$password,$db,$consulta);
+
+    // Pegar o último protocolo gerado
+    $consulta = "SELECT protocolo FROM vendas ORDER BY protocolo DESC LIMIT 1";
+    $resultado = banco($server,$user,$password,$db,$consulta);
+    $linha = $resultado->fetch_assoc();
+
+    $_SESSION["protocolo"] = $linha["protocolo"];
+
+    unset($_SESSION["carrinho"]);
+
+    header("Location: sucesso.php");
+    exit();
+}
+
+# Adicionar ao carrinho
+if(isset($B8)){
+
+    $_SESSION["carrinho"][] = array(
+        "nome"=>$nome,
+        "preco"=>$preco
+    );
+
+    header("Location: index.php");
     exit();
 }
 ?>
