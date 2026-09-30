@@ -43,12 +43,10 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 
 
 **SQL para criação do banco de dados:**
-
+```
 DROP DATABASE IF EXISTS infilme;
 
 CREATE DATABASE infilme
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_general_ci;
 
 USE infilme;
 
@@ -162,3 +160,4 @@ INSERT INTO produtos (Id, nome, preco, descricao, imagem, genero_id) VALUES
 (NULL, 'Pulp Fiction: Tempo de Violência', 12.50, 'As vidas de dois assassinos da máfia, um boxeador, um gângster e sua esposa, e um par de bandidos se entrelaçam em quatro histórias de violência e redenção.', 'Pulp Fiction.jpg', 4),
 (NULL, 'Guerra nas Estrelas: O Império Contra-Ataca', 15.00, 'Depois que a Aliança Rebelde é dominada pelo Império, Luke Skywalker começa seu treinamento Jedi com Yoda, enquanto seus amigos são perseguidos por toda a galáxia por Darth Vader e pelo caçador de recompensas Boba Fett.', 'Star Wars ep V.jpg', 5),
 (NULL, 'Zootopia 2', 13.50, 'A corajosa coelha policial Judy Hopps e seu amigo, a raposa Nick Wilde, unem-se novamente para solucionar um novo caso, o mais perigoso e intrincado de suas carreiras.', 'Zootopia 2.jpeg', 2);
+```
