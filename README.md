@@ -47,6 +47,8 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 DROP DATABASE IF EXISTS infilme;
 
 CREATE DATABASE infilme
+    CHARACTER SET utg8mb4;
+    COLLATE utfmb4_general_ci;
 
 USE infilme;
 
