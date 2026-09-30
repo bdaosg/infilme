@@ -31,6 +31,7 @@ Protocolo, usuário, data e hora, forma de pagamento e total da compra.
 - itens_venda:
 Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 
+
 **Modelo Entidade Relacionamento:**
 
 ![MER](ModeloER.png)
@@ -39,6 +40,7 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 **Modelo Lógico:**
 
 ![MER](ML.png)
+
 
 **SQL para criação do banco de dados:**
 
