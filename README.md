@@ -44,8 +44,7 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 
 **SQL para criação do banco de dados:**
 ```
-CREATE DATABASE infilme;
-
+CREATE DATABASE IF NOT EXISTS infilme;
 USE infilme;
 
 CREATE TABLE usuarios (
@@ -59,7 +58,9 @@ CREATE TABLE login_usuario (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     conta VARCHAR(100) NOT NULL,
-    senha VARCHAR(255) NOT NULL
+    senha VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_login_usuario FOREIGN KEY (usuario_id) 
+        REFERENCES usuarios(Id) ON DELETE CASCADE
 );
 
 CREATE TABLE produtos (
@@ -74,7 +75,11 @@ CREATE TABLE carrinho (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     produto_id INT NOT NULL,
-    quantidade INT NOT NULL DEFAULT 1
+    quantidade INT NOT NULL DEFAULT 1,
+    CONSTRAINT fk_carrinho_usuario FOREIGN KEY (usuario_id) 
+        REFERENCES usuarios(Id) ON DELETE CASCADE,
+    CONSTRAINT fk_carrinho_produto FOREIGN KEY (produto_id) 
+        REFERENCES produtos(Id) ON DELETE CASCADE
 );
 
 CREATE TABLE vendas (
@@ -82,9 +87,12 @@ CREATE TABLE vendas (
     usuario_id INT NOT NULL,
     compras TEXT NOT NULL,
     pagamento VARCHAR(50) NOT NULL,
-    total DECIMAL(10,2) NOT NULL
+    total DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_vendas_usuario FOREIGN KEY (usuario_id) 
+        REFERENCES usuarios(Id) ON DELETE CASCADE
 );
 
+-- =================INSERÇÃO DE DADOS=================
 
 INSERT INTO usuarios (nome, cpf, cep) VALUES
 ('Arthur Silva', '12345678901', '45820000'),
@@ -92,7 +100,6 @@ INSERT INTO usuarios (nome, cpf, cep) VALUES
 ('Carlos Oliveira', '34567890123', '45822000'),
 ('Daniel Souza', '45678901234', '45823000'),
 ('Eduardo Costa', '56789012345', '45824000');
-
 
 INSERT INTO login_usuario (usuario_id, conta, senha) VALUES
 (1, 'admin', MD5('123456')),
@@ -102,32 +109,19 @@ INSERT INTO login_usuario (usuario_id, conta, senha) VALUES
 (5, 'daniel123', MD5('123456')),
 (5, 'eduardo123', MD5('123456'));
 
-
 INSERT INTO produtos (nome, preco, descricao, imagem) VALUES
-('Batman: O Cavaleiro das Trevas', 14.90, 'Agora com a ajuda do tenente Jim Gordon e do promotor público Harvey Dent, Batman tem tudo para banir o crime de Gotham City de uma vez por todas. Mas em breve, os três serão vítimas do Coringa, que pretende lançar Gotham em uma anarquia.', 'Batman O cavaleiro das trevas.jpg'),
-
-('De Volta para o Futuro', 12.50, 'Marty McFly viaja para 1955 com a máquina do tempo do cientista Dr. Brown. Ele deve garantir que seus pais se apaixonem, para não arriscar sua própria existência.', 'De volta para o futuro.jpg'),
-
+('Batman: O Cavaleiro das Trevas', 14.90, 'Agora com a ajuda do tenente Jim Gordon e do promotor público Harvey Dent, Batman tem tudo para banir o crime de Gotham City de uma vez por todas.', 'Batman O cavaleiro das trevas.jpg'),
+('De Volta para o Futuro', 12.50, 'Marty McFly viaja para 1955 com a máquina do tempo do cientista Dr. Brown.', 'De volta para o futuro.jpg'),
 ('Devoradores de Estrelas', 9.90, 'Um astronauta tenta salvar a Terra enquanto está sozinho no espaço sideral.', 'Devoradores de estrelas.jpeg'),
-
-('Homem-Aranha: Através do Aranhaverso', 16.00, 'Viajando pelo multiverso, Miles Morales conhece um novo time de Pessoas-Aranha, formado por heróis de diversas dimensões. Mas quando os heróis entram em conflito sobre como lidar com uma nova ameaça, Miles se vê em um impasse.', 'HomemAranhaAtravesdoaranhaverso.jpg'),
-
-('Interestelar', 15.50, 'Uma equipe de exploradores viaja através de um buraco de minhoca no espaço, na tentativa de garantir a sobrevivência da humanidade.', 'Interestelar.jpg'),
-
-('Kill Bill - Volume 1', 11.90, 'Depois de despertar de um coma de quatro anos, uma antiga assassina busca vingança contra o grupo de assassinos que a traiu.', 'Kill Bill.jpg'),
-
-('Matrix', 13.00, 'Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.', 'Matrix.jpg'),
-
+('Homem-Aranha: Através do Aranhaverso', 16.00, 'Viajando pelo multiverso, Miles Morales conhece um novo time de Pessoas-Aranha.', 'HomemAranhaAtravesdoaranhaverso.jpg'),
+('Interestelar', 15.50, 'Uma equipe de exploradores viaja através de um buraco de minhoca no espaço.', 'Interestelar.jpg'),
+('Kill Bill - Volume 1', 11.90, 'Depois de despertar de um coma de quatro anos, uma antiga assassina busca vingança.', 'Kill Bill.jpg'),
+('Matrix', 13.00, 'Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade.', 'Matrix.jpg'),
 ('O Diabo Veste Prada 2', 10.50, 'Sequência de O Diabo Veste Prada (2006).', 'O diabo veste prada 2.png'),
-
-('O Exterminador do Futuro', 12.90, 'Um assassino ciborgue do futuro tenta encontrar e matar Sarah Connor, uma garçonete que está destinada a ser a mãe de um homem que salvará a humanidade da extinção.', 'O exterminador do futuro.jpg'),
-
-('Pulp Fiction: Tempo de Violência', 12.50, 'As vidas de dois assassinos da máfia, um boxeador, um gângster e sua esposa, e um par de bandidos se entrelaçam em quatro histórias de violência e redenção.', 'Pulp Fiction.jpg'),
-
-('Guerra nas Estrelas: O Império Contra-Ataca', 15.00, 'Depois que a Aliança Rebelde é dominada pelo Império, Luke Skywalker começa seu treinamento Jedi com Yoda, enquanto seus amigos são perseguidos por toda a galáxia por Darth Vader e pelo caçador de recompensas Boba Fett.', 'Star Wars ep V.jpg'),
-
-('Zootopia 2', 13.50, 'A corajosa coelha policial Judy Hopps e seu amigo, a raposa Nick Wilde, unem-se novamente para solucionar um novo caso, o mais perigoso e intrincado de suas carreiras.', 'Zootopia 2.jpeg');
-
+('O Exterminador do Futuro', 12.90, 'Um assassino ciborgue do futuro tenta encontrar e matar Sarah Connor.', 'O exterminador do futuro.jpg'),
+('Pulp Fiction: Tempo de Violência', 12.50, 'As vidas de dois assassinos da máfia, um boxeador e um gângster se entrelaçam.', 'Pulp Fiction.jpg'),
+('Guerra nas Estrelas: O Império Contra-Ataca', 15.00, 'Depois que a Aliança Rebelde é dominada pelo Império, Luke Skywalker começa seu treinamento Jedi.', 'Star Wars ep V.jpg'),
+('Zootopia 2', 13.50, 'A corajosa coelha policial Judy Hopps e a raposa Nick Wilde unem-se novamente.', 'Zootopia 2.jpeg');
 
 INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES
 (1, 1, 1),
@@ -135,7 +129,6 @@ INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES
 (3, 7, 1),
 (4, 10, 2),
 (5, 12, 1);
-
 
 INSERT INTO vendas (usuario_id, compras, pagamento, total) VALUES
 (1, 'Batman: O Cavaleiro das Trevas (x1)', 'Pix', 14.90),
