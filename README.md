@@ -92,8 +92,6 @@ CREATE TABLE vendas (
         REFERENCES usuarios(Id) ON DELETE CASCADE
 );
 
--- =================INSERÇÃO DE DADOS=================
-
 INSERT INTO usuarios (nome, cpf, cep) VALUES
 ('Arthur Silva', '12345678901', '45820000'),
 ('Bruno Santos', '23456789012', '45821000'),
