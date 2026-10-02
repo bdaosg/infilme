@@ -34,12 +34,12 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 
 **Modelo Entidade Relacionamento:**
 
-![MER](ModeloER.png)
+![MER](MODELO-CONCEITUAL.png)
 
 
 **Modelo Lógico:**
 
-![MER](ML.png)
+![MER](MODELO-LOGICO.png)
 
 
 **SQL para criação do banco de dados:**
