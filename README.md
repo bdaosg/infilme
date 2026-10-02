@@ -39,7 +39,7 @@ Protocolo da venda, filme, quantidade e preço cobrado na data da compra.
 
 **Modelo Lógico:**
 
-![MER](MODELO-LOGICO.png)
+![MER](MODELO--LOGICO.png)
 
 
 **SQL para criação do banco de dados:**
