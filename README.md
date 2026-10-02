@@ -129,9 +129,9 @@ INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES
 (5, 12, 1);
 
 INSERT INTO vendas (usuario_id, compras, pagamento, total) VALUES
-(1, 'Batman: O Cavaleiro das Trevas (x1)', 'Pix', 14.90),
-(2, 'Interestelar (x2)', 'Cartao', 31.00),
-(3, 'Matrix (x1)', 'Pix', 13.00),
-(4, 'Pulp Fiction: Tempo de Violência (x2)', 'Cartao', 25.00),
-(5, 'Zootopia 2 (x1)', 'Dinheiro', 13.50);
+(1, 'Batman: O Cavaleiro das Trevas', 'Pix', 14.90),
+(2, 'Interestelar', 'Cartao', 31.00),
+(3, 'Matrix', 'Pix', 13.00),
+(4, 'Pulp Fiction: Tempo de Violência', 'Cartao', 25.00),
+(5, 'Zootopia 2', 'Dinheiro', 13.50);
 ```
