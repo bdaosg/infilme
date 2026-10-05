@@ -1,12 +1,25 @@
 <?php
+include "cons.php";
+require_once "DLL.php";
+
 if(!isset($_SESSION)) {
     session_start();
 }
 
-if(!isset($_SESSION["login"])){header("Location: login.php");}
-    if(!isset($_SESSION["carrinho"]) or count($_SESSION["carrinho"]) == 0){
-        header("Location: carrinho.php");
-        exit;
+if(!isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+}
+
+$consulta = "SELECT c.quantidade, p.nome, p.preco
+            FROM carrinho c
+            INNER JOIN produtos p ON c.produto_id = p.Id
+            WHERE c.usuario_id = '".$_SESSION["usuario_id"]."'";
+$resultado = banco($server, $user, $password, $db, $consulta);
+
+if($resultado->num_rows == 0){
+    header("Location: carrinho.php");
+    exit;
 }
 ?>
 
@@ -54,17 +67,17 @@ if(!isset($_SESSION["login"])){header("Location: login.php");}
                 <?php
                 $total = 0;
 
-                foreach($_SESSION["carrinho"] as $filme){echo "<div class='resumo-item'>";
+                while($filme = $resultado->fetch_assoc()){echo "<div class='resumo-item'>";
 
-                    echo "<span>".$filme["nome"]."</span>";
-                    echo "<span>R$ ".$filme["preco"]."</span>";
+                    echo "<span>".$filme["nome"]." (x".$filme["quantidade"].")</span>";
+                    echo "<span>R$ ".number_format($filme["preco"] * $filme["quantidade"], 2, ',', '.')."</span>";
                     echo "</div>";
-                    $total += $filme["preco"];
+                    $total += $filme["preco"] * $filme["quantidade"];
                 }
                 ?>
 
                 <strong>
-                Total: R$ <?php echo $total; ?>
+                Total: R$ <?php echo number_format($total, 2, ',', '.'); ?>
                 </strong>
             </div>
 
