@@ -1,15 +1,14 @@
 <?php
+include "cons.php";
+require_once "DLL.php";
+
 if(!isset($_SESSION)) {
     session_start();
 }
 
-if(isset($_POST["nome"])){
-    $_SESSION["carrinho"][] = array("nome" => $_POST["nome"], "preco" => $_POST["preco"]);
-}
-
-if(isset($_POST["remover"])){
-    unset($_SESSION["carrinho"][$_POST["remover"]]);
-    $_SESSION["carrinho"] = array_values($_SESSION["carrinho"]);
+if(isset($_POST["remover"]) and isset($_SESSION["usuario_id"])){
+    $consulta = "DELETE FROM carrinho WHERE Id = '".$_POST["remover"]."' AND usuario_id = '".$_SESSION["usuario_id"]."'";
+    banco($server, $user, $password, $db, $consulta);
 }
 ?>
 
@@ -49,20 +48,31 @@ if(isset($_POST["remover"])){
         <?php
         $total = 0;
 
-        if(isset($_SESSION["carrinho"])){
-            foreach($_SESSION["carrinho"] as $indice => $filme){
-                echo "<h3>".$filme["nome"]."</h3>"; 
-                echo "<h3>"." R$ ".$filme["preco"]."</h3>"; 
+        if(isset($_SESSION["usuario_id"])){
+            $consulta = "SELECT c.Id, c.quantidade, p.nome, p.preco
+                        FROM carrinho c
+                        INNER JOIN produtos p ON c.produto_id = p.Id
+                        WHERE c.usuario_id = '".$_SESSION["usuario_id"]."'";
+            $resultado = banco($server, $user, $password, $db, $consulta);
 
-                echo "<form method='post'>";
-                echo "<input type='hidden' name='remover' value='".$indice."'>";
-                echo "<button class='botao' type='submit'>Remover</button>";
-                echo "</form>";
-                $total += $filme["preco"];
-            }
-            echo "<h3>Total: R$ ".$total."</h3>";
+            if($resultado->num_rows > 0){
+                while($filme = $resultado->fetch_assoc()){
+                    echo "<h3>".$filme["nome"]."</h3>"; 
+                    echo "<h3>"." R$ ".number_format($filme["preco"], 2, ',', '.')."</h3>"; 
+                    echo "<h3>Quantidade: ".$filme["quantidade"]."</h3>"; 
+
+                    echo "<form method='post'>";
+                    echo "<input type='hidden' name='remover' value='".$filme["Id"]."'>";
+                    echo "<button class='botao' type='submit'>Remover</button>";
+                    echo "</form>";
+                    $total += $filme["preco"] * $filme["quantidade"];
+                }
+                echo "<h3>Total: R$ ".number_format($total, 2, ',', '.')."</h3>";
             }else{
                 echo "<p>Carrinho vazio.</p>";
+            }
+        }else{
+            echo "<p>Faça login para ver seu carrinho.</p>";
         }
         ?>
 
