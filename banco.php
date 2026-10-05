@@ -57,31 +57,46 @@ if(isset($B7)){
     $total = 0;
     $compras = "";
 
-    if(empty($_SESSION["carrinho"])){
+    $consulta = "SELECT c.quantidade, p.nome, p.preco
+                FROM carrinho c
+                INNER JOIN produtos p ON c.produto_id = p.Id
+                WHERE c.usuario_id = '".$_SESSION["usuario_id"]."'";
+    $resultado = banco($server, $user, $password, $db, $consulta);
+
+    if($resultado->num_rows == 0){
         header("Location: carrinho.php");
         exit();
     }
 
-    foreach($_SESSION["carrinho"] as $filme){
+    while($filme = $resultado->fetch_assoc()){
 
-        $total += $filme["preco"];
-        $compras .= $filme["nome"].", ";
+        $total += $filme["preco"] * $filme["quantidade"];
+        $compras .= $filme["nome"]." (x".$filme["quantidade"]."), ";
     }
 
     $compras = rtrim($compras,", ");
 
-    $consulta = "INSERT INTO vendas VALUES (NULL, '".$_SESSION["usuario_id"]."', '".$_SESSION["login"]."', '$compras', '$total', '$pagamento')";
+    $consulta = "INSERT INTO vendas 
+    (usuario_id, compras, pagamento, total)
+    VALUES (
+        '".$_SESSION["usuario_id"]."',
+        '$compras',
+        '$pagamento',
+        '$total'
+    )";
 
     banco($server,$user,$password,$db,$consulta);
 
-    // Pegar o último protocolo gerado
+    # Pegar o último protocolo gerado
     $consulta = "SELECT protocolo FROM vendas ORDER BY protocolo DESC LIMIT 1";
     $resultado = banco($server,$user,$password,$db,$consulta);
     $linha = $resultado->fetch_assoc();
 
     $_SESSION["protocolo"] = $linha["protocolo"];
 
-    unset($_SESSION["carrinho"]);
+    # Limpar o carrinho do usuário
+    $consulta = "DELETE FROM carrinho WHERE usuario_id = '".$_SESSION["usuario_id"]."'";
+    banco($server,$user,$password,$db,$consulta);
 
     header("Location: sucesso.php");
     exit();
@@ -90,10 +105,21 @@ if(isset($B7)){
 # Adicionar ao carrinho
 if(isset($B8)){
 
-    $_SESSION["carrinho"][] = array(
-        "nome"=>$nome,
-        "preco"=>$preco
-    );
+    if(!isset($_SESSION["usuario_id"])){
+        header("Location: login.php");
+        exit();
+    }
+
+    # Ver se o produto já está no carrinho
+    $consulta = "SELECT Id FROM carrinho WHERE usuario_id = '".$_SESSION["usuario_id"]."' AND produto_id = '$produto_id'";
+    $resultado = banco($server, $user, $password, $db, $consulta);
+
+    if($linha = $resultado->fetch_assoc()){
+        $consulta = "UPDATE carrinho SET quantidade = quantidade + 1 WHERE Id = '".$linha["Id"]."'";
+    } else {
+        $consulta = "INSERT INTO carrinho (Id, usuario_id, produto_id, quantidade) VALUES (NULL, '".$_SESSION["usuario_id"]."', '$produto_id', 1)";
+    }
+    banco($server, $user, $password, $db, $consulta);
 
     header("Location: index.php");
     exit();
